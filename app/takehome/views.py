@@ -82,7 +82,49 @@ def retrieve_subreddit_as_json(subreddit_name: str) -> JSONType:
         # Parse JSON for most relevant information
         return parse_json_data(json_data)
 
+def parse_json_data(json_data: JSONType) -> JSONType:
+    """ Takes a JSON object of subreddit's data and returns a dictionary of 
+        relevant information:
+        - Subreddit name
+        - Post title
+        - Post URL
+        - Post score (upvotes + downvotes)
+        As long as the post has a title, we will display it. If it is missing
+        any of the other fields, we'll simply leave that field blank.
 
+    Args:
+        subreddit_data (JSONType): JSON object of post information
+
+    Returns:
+        JSONType: Relevant post information
+    """
+    # Validate JSON 
+    if 'data' in json_data and\
+        'children' in json_data['data'] and\
+        json_data['data']['children'] and\
+        'data' in json_data['data']['children'][0] and\
+        'title' in json_data['data']['children'][0]['data']:
+        
+        # Save top post "child"
+        post = json_data['data']['children'][0]['data']
+
+        # Convert epoch time to datetime
+        epoch_time = post['created_utc']  if 'created_utc' in post else 0
+        readable_time = time.strftime('%b %d, %Y %I:%M %p', time.localtime(epoch_time))
+
+        # Get title, timestamp, and number of likes
+        post_info = {
+            'subreddit':    post['subreddit'] if 'subreddit' in post else '',
+            'title':        post['title'] if 'title' in post else '',
+            'url':          post['url']  if 'url' in post else '',
+            'score':        post['score']  if 'score' in post else '',
+            'created_utc':  readable_time
+        }
+
+        return post_info
+    # If invalid JSON data, return empty dictionary
+    else:
+        return {}
 
 def index(request: HttpRequest) -> HttpResponse:
     """[summary]
@@ -102,7 +144,7 @@ def index(request: HttpRequest) -> HttpResponse:
 
     for name in subreddit_names:
         top_posts.append(retrieve_subreddit_as_json(name))
-    
+
     context = {
         'subreddit_form': FollowSubredditForm(),
         'subreddit_count': subreddit_count,

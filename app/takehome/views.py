@@ -7,7 +7,10 @@ from .forms import FollowSubredditForm
 from .models import Subreddit
 
 def index(request):
-    return render(request, 'takehome/index.html')
+    context = {
+        'subreddit_form': FollowSubredditForm()
+    }
+    return render(request, 'takehome/index.html', context)
 
 def evict_oldest_subreddit() -> None:
     """ Evicts the oldest subreddit followed """

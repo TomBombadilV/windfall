@@ -144,6 +144,9 @@ def index(request: HttpRequest) -> HttpResponse:
 
     for name in subreddit_names:
         top_posts.append(retrieve_subreddit_as_json(name))
+    
+    # Sort posts by vote count (highest score first)
+    top_posts = sorted(top_posts, key=lambda k: k['score'], reverse=True) 
 
     context = {
         'subreddit_form': FollowSubredditForm(),

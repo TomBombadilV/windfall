@@ -8,6 +8,7 @@ class FollowSubredditForm(ModelForm):
     """ A form for creating a new Subreddit object to indicate
         that that subreddit is now being followed by user.
     """
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'AskReddit'}), label='')
     class Meta:
         model = Subreddit
         fields = ['name']

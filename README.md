@@ -65,6 +65,10 @@ A full-stack web application that supports the following functionality:
     open http://localhost:8000/takehome
     ```
 
+## Screenshot
+![Screenshot](https://postimg.cc/K3cKP5vW)
+
+
 ## Moving Forward
 Moving forward, I would add images to top posts as well as the functionality to close out a post, and I'd also make the interface more responsive, since I did not have enough time to do so. I'd also add thorough tests and more comprehensive error handling of different cases.
 

@@ -1,33 +1,51 @@
-
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>My Project</title>
+        <title>Lightweight Reddit Feed</title>
         <meta name="description" content="A lightweight Reddit feed">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
     </head>
 
     <body>
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        
-        <div>
-            <h3>Add to my feed:</h3>
-            <div>
-                <div><p>r/</p></div>
-                <form method="POST" action="{% url 'follow' %}" name="follow-form">
-                    {% csrf_token %}
-                    {{ subreddit_form }}
-                    <input type="submit" value="Subscribe">
-                </form>
-            </div>  
-        </div>
+        <div id="content-div">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+                <h2 class="title">Add to my feed:</h2>
+                <div>
+                    <div class="follow-form-lead"><p>r/</p></div>
+                    <form method="POST" id="follow-form" action="{% url 'follow' %}" name="follow-form">
+                        {% csrf_token %}
+                        {{ subreddit_form }}
+                        <input class="subscribe-button" type="submit" value="Subscribe">
+                    </form>
+                </div>  
+                <p class="subreddit-count">{{ subreddit_count }}/5 Channels</p>
+                <hr>
+                <div id="posts">
+                    {% for post_dict in top_posts %}
+                    <div class="post-tile">
+                        <div class="post-image-col">
+                            <div class="post-image"></div>
+                        </div>
+                        <div class="post-text-col">
+                            <p class="post-subreddit"><span class="post-subreddit-leader">/r/</span>{{ post_dict.subreddit }}</p>
+                            <a href="{{ post_dict.url }}" class="post-title" target="_blank">{{ post_dict.title }}</a>
+                            <p class="post-metadata">{{ post_dict.score }}⇧ | {{ post_dict.created_utc }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+    
+        </div> <!-- content-div -->
     </body>
 </html>

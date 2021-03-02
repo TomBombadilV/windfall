@@ -66,7 +66,7 @@ A full-stack web application that supports the following functionality:
     ```
 
 ## Screenshot
-![Screenshot](https://postimg.cc/K3cKP5vW)
+![Screenshot](https://i.postimg.cc/vTfWdqRG/Screen-Shot-2021-03-02-at-8-09-16-AM.png)
 
 
 ## Moving Forward

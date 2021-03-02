@@ -8,3 +8,6 @@ class Subreddit(models.Model):
     """
     name = models.CharField(max_length=180)
     date_followed = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.name

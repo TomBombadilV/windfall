@@ -43,3 +43,92 @@ hr {
     background-color: #eee;
 }
 
+/* ------------------------------------------------------------------------- */
+/* --------------------------- Subscription Form --------------------------- */
+/* ------------------------------------------------------------------------- */
+
+.title {
+    margin-bottom: 25px;
+}
+
+.follow-form-lead,
+#follow-form,
+.post-image-col, 
+.post-text-col {
+    display: inline-block;
+}
+
+.follow-form-lead {
+    background-color: var(--med-gray);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#id_name {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.subscribe-button {
+    border: 0px;
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.subreddit-count {
+    text-align: left;
+    font-size: 0.3em;
+}
+
+/* ------------------------------------------------------------------------- */
+/* ------------------------------- Post Tiles ------------------------------ */
+/* ------------------------------------------------------------------------- */
+
+.post-tile {
+    padding: 20px;
+    text-align: left;
+    border: 1px solid #999;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+
+.post-image-col {
+    width: 18%;
+}
+
+.post-text-col {
+    width: 80%;
+}
+
+.subreddit-count,
+.post-subreddit, 
+.post-metadata {
+    font-size: 0.7em;
+}
+
+.subreddit-count,
+.post-subreddit-leader,
+.post-metadata {
+    color: var(--dark-gray);
+}
+
+.post-title {
+    font-weight: bold;
+}
+
+.post-image {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background-color: var(--med-gray);
+}

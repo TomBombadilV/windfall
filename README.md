@@ -15,9 +15,15 @@ A full-stack web application that supports the following functionality:
 ## High Level Approach
 1. Have model for Subreddit so that subreddits followed by user can persist. If a Subreddit object exists for a given subreddit, that means that the user is currently following that subreddit.
 2. A "follow" action triggers the following actions:
+    - Check if the subreddit exists by sending a request to its URL and checking the response
+    - Check if the subreddit is already being followed by user
     - Check how many subreddits the user is currently following (the number of Subreddit objects). If there are 5, evict (delete) the oldest one.
     - Create a new Subreddit object with the given subreddit name and current timestamp
-
+3. Every time the index page is refreshed, it triggers the following actions:
+    - Gather the names of all subreddits currently being followed
+    - Retrieve JSON data of top post from each subreddit
+    - Filter out most important / relevant data
+    - Sort posts by score (highest to lowest)
 
 ## Technology Used
 - Django 3.1 + Python 3.6

@@ -1,6 +1,6 @@
 from django.db import models
 
-class SubReddit(models.Model):
+class Subreddit(models.Model):
     """ A subreddit must have:
         - Identifying name (ex: 'AskReddit'). Limited by 180 chars
     """

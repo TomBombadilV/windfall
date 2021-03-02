@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.urls import reverse
 
 from .forms import FollowSubredditForm
 from .models import Subreddit
@@ -37,9 +38,12 @@ def follow(request: HttpRequest) -> HttpResponse:
 
             # Create Subreddit object from Subreddit ModelForm
             follow_form.save()
+
+            # Display index page
+            return redirect(reverse('login'))
         else:
             messages.error(request, "Invalid form data")
 
     # If not a POST request, create a new blank form
     else:
-        return render(request, 'takehome/index.html', {'subreddit_form': FollowSubredditForm()})
+        return redirect(reverse('login'))

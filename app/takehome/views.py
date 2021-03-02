@@ -180,13 +180,13 @@ def follow(request: HttpRequest) -> HttpResponse:
             req_subreddit = follow_form.save(commit=False)
             req_subreddit_name = req_subreddit.name
 
-            # Check that it is a valid subreddit
-            if not check_valid_subreddit(req_subreddit_name):
-                return redirect(reverse('index'))
-
             # Check that subreddit is not already being followed
             followed_subreddit = Subreddit.objects.filter(name=req_subreddit_name)
             if followed_subreddit:
+                return redirect(reverse('index'))
+
+            # Check that it is a valid subreddit
+            if not check_valid_subreddit(req_subreddit_name):
                 return redirect(reverse('index'))
 
             # Check if subreddit limit has been reached. If so, 

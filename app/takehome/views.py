@@ -8,6 +8,11 @@ from .models import Subreddit
 def index(request):
     return render(request, 'takehome/index.html')
 
+def evict_oldest_subreddit() -> None:
+    """ Evicts the oldest subreddit followed """
+    oldest_subreddit = Subreddit.objects.latest('date_followed')
+    oldest_subreddit.delete()
+
 def follow(request: HttpRequest) -> HttpResponse:
     """ Follows given subreddit. If 5 subreddits already being followed,
         removes oldest followed subreddit.

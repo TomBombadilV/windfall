@@ -1,1 +1,25 @@
-<h1>Hello world :D</h1>
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>My Project</title>
+        <meta name="description" content="A lightweight Reddit feed">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <div>
+            <h3>Add to my feed:</h3>
+            <div>
+                <div><p>r/</p></div>
+                <form method="POST" action="{% url 'follow' %}" name="follow-form">
+                    {% csrf_token %}
+                    {{ subreddit_form }}
+                    <input type="submit" value="Subscribe">
+                </form>
+            </div>  
+        </div>
+    </body>
+</html>

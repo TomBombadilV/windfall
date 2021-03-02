@@ -43,10 +43,10 @@ def follow(request: HttpRequest) -> HttpResponse:
             follow_form.save()
 
             # Display index page
-            return redirect(reverse('login'))
+            return redirect(reverse('index'))
         else:
             messages.error(request, "Invalid form data")
 
     # If not a POST request, create a new blank form
     else:
-        return redirect(reverse('login'))
+        return redirect(reverse('index'))

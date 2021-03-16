@@ -180,6 +180,10 @@ def follow(request: HttpRequest) -> HttpResponse:
             req_subreddit = follow_form.save(commit=False)
             req_subreddit_name = req_subreddit.name
 
+            # Strip whitespace from subreddit name
+            req_subreddit_name = ''.join(req_subreddit_name.split())
+            print(req_subreddit_name)
+
             # Check that subreddit is not already being followed
             followed_subreddit = Subreddit.objects.filter(name=req_subreddit_name)
             if followed_subreddit:
@@ -195,7 +199,8 @@ def follow(request: HttpRequest) -> HttpResponse:
             if follow_count == 5:
                 evict_oldest_subreddit()
 
-            # Save Subreddit object
+            # Save Subreddit object with sanitized name
+            req_subreddit.name = req_subreddit_name
             req_subreddit.save()
 
             # Display index page

@@ -11,6 +11,7 @@ A full-stack web application that supports the following functionality:
 ## Assumptions
 1. Re-following a subreddit that you already follow does not update its "follow" timestamp.
 2. Entering a string that is not a valid subreddit will do nothing.
+3. Entering a subreddit name with whitespace in it will have the whitespace stripped out
 
 ## High Level Approach
 1. Have model for Subreddit so that subreddits followed by user can persist. If a Subreddit object exists for a given subreddit, that means that the user is currently following that subreddit.
